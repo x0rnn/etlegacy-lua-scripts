@@ -857,8 +857,8 @@ function et_Obituary(victim, killer, mod)
 				deaths[victim] = deaths[victim] + 1
 				worst_enemy[victim][killer] = worst_enemy[victim][killer] + 1
 				easiest_prey[killer][victim] = easiest_prey[killer][victim] + 1 
-				local posk = et.gentity_get(victim, "ps.origin")
-				local posv = et.gentity_get(killer, "ps.origin")
+				local posk = et.gentity_get(killer, "ps.origin")
+				local posv = et.gentity_get(victim, "ps.origin")
 				local killdist = dist(posk, posv)
 
 				if v_teamid == 1 then
