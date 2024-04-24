@@ -26,7 +26,7 @@ stuck_time = 0
 intervals = {[1]=0, [2]=0}
 sudden_death = false
 first_obj = false
-sw_sd_disabled = false
+sw_flag = false
 
 -- Constans
 COLOR = {}
@@ -34,27 +34,19 @@ COLOR.PLACE = '^8'
 COLOR.TEXT = '^w'
 COLOR.TIME = '^8' -- this constat is changing in the print_message() function
  
-CHAT = "bp" 
+CHAT = "cpm" 
 POPUP = "legacy"
 
 timer = {}
+
+OLD = os.time()
 
 function et_InitGame(levelTime, randomSeed, restart)
     et.RegisterModname("suddendeath.lua" .. et.FindSelf())
 	mapname = string.lower(et.trap_Cvar_Get("mapname"))
 	gametype = tonumber(et.trap_Cvar_Get("g_gametype"))
-	local alliedwins = tonumber(et.trap_Cvar_Get("g_alliedWins"))
-	local maptime = et.trap_Cvar_Get("timelimit")
 	if tonumber(et.trap_Cvar_Get("g_currentRound")) == 1 then
-		if alliedwins == 1 then
-			sw_sd_disabled = true
-		else
-			if maptime > et.trap_Cvar_Get("sd_defaulttime")
-				sw_sd_disabled = true
-			end
-		end
-	else
-		et.trap_Cvar_Set("sd_defaulttime", maptime)
+		sw_flag = true
 	end
 end
 
@@ -187,9 +179,9 @@ function et_Print( text )
 			print_message(-1, -1, timer[index]["place"])
 			--et.G_LogPrint("dynamite set: " .. index .. "\n")
 
-			if gametype ~= 3 or (gametype == 3 and sw_sd_disabled == false) then
+			if gametype ~= 3 or (gametype == 3 and sw_flag == false) then
 				if mapname == "battery" or mapname == "sw_battery" or mapname == "fueldump" or mapname == "braundorf_b4" or mapname == "mp_sub_rc1" then
-					if plant == "the Gun Controls" or plant == "the Fuel Dump" or plant == "the bunker controls" or plant == "the Axis Submarine" then
+					if plant == "the Gun Controls" or plant == "the Fuel Dump" or plant == "the Bunker Controls" or plant == "the Axis Submarine" then
 						local timelimit = et.trap_Cvar_Get("timelimit") * 1000 * 60 - 2000 --counts 2 seconds more for some reason...
 						local timeleft
 						timeleft = timelimit - ((et.trap_Milliseconds() - stuck_time) - mapstart_time)
@@ -250,7 +242,7 @@ function et_Print( text )
 			if team == "axis" then team = 1 
 			else team = 2 end
 
-			if gametype ~= 3 or (gametype == 3 and sw_sd_disabled == false) then
+			if gametype ~= 3 or (gametype == 3 and sw_flag == false) then
 				if mapname == "battery" or mapname == "sw_battery" or mapname == "fueldump" or mapname == "braundorf_b4" or mapname == "mp_sub_rc1" then
 					if plant == "the Gun Controls" or plant == "the Fuel Dump" or plant == "the bunker controls" or plant == "the Axis Submarine" then
 						if sudden_death == true then
@@ -300,9 +292,9 @@ function et_Print( text )
 	if start2 and stop2 then
 		start2,stop2,plant = string.find(text, POPUP .. " announce: \"([^%\"]*)\"")
 		if start2 and stop2 then -- dynamite planted
-			if gametype ~= 3 or (gametype == 3 and sw_sd_disabled == false) then
+			if gametype ~= 3 or (gametype == 3 and sw_flag == false) then
 				if mapname == "oasis" or mapname == "sw_oasis_b3" then
-					if plant == "Allied team has destroyed the South Anti-Tank Gun!" or plant == "Allied team has destroyed the North Anti-Tank Gun!" then
+					if plant == "^7Allies have destroyed the North Anti-Tank Gun!" or plant == "^7Allies have destroyed the South Anti-Tank Gun!" or plant == "^7Allied team has destroyed the South Anti-Tank Gun!" or plant == "^7Allied team has destroyed the North Anti-Tank Gun!" then
 						if first_obj == false then
 							first_obj = true
 						else
@@ -310,7 +302,7 @@ function et_Print( text )
 						end
 					end
 				elseif mapname == "erdenberg_t2" then
-					if plant == "The West Flak88 has been destroyed!" or plant == "The East Flak88 has been destroyed!" then
+					if plant == "^7^dAllies have destroyed the West Flak88!" or plant == "^7^dAllies have destroyed the East Flak88!" then
 						if first_obj == false then
 							first_obj = true
 						else
@@ -318,7 +310,7 @@ function et_Print( text )
 						end
 					end
 				elseif mapname == "tc_base" then
-					if plant == "Allied team has disabled the South Radar!" or plant == "Allied team has disabled the North Radar!" then
+					if plant == "^7Allied team has disabled the South Radar!" or plant == "^7Allied team has disabled the North Radar!" then
 						if first_obj == false then
 							first_obj = true
 						else
