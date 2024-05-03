@@ -44,7 +44,7 @@ Author         = "[ETW-FZ] Mad@Mat"
 --------------------------------------------------------------------------------
 ETWsk_putspec = 1                -- number of sk's needed for setting a client
                                  -- to spectators
-ETWsk_kick = 3                  -- number of sk's needed for kicking a client
+ETWsk_kick = 2                  -- number of sk's needed for kicking a client
 ETWsk_kicklen = 5               -- duration of kick
 -- benny -----------------------------------------------------------------------
 ETWsk_persistentoffender = 1     -- enable punishment 4 persistent spawn killers
@@ -63,7 +63,7 @@ ETWsk_expires = 0                -- if enabled, spawn protection expires when
                                  -- the victim hurts an enemy
 -- benny -----------------------------------------------------------------------
 sinbin          = true           -- [true|false]
-sinbin_duration = 15000          -- in milliseconds: 30000 = 30 seconds
+sinbin_duration = 300000          -- in milliseconds: 30000 = 30 seconds
 sinbin_pos      = "chat"          -- prints to client on sin bin, "b 8 " = chat area
 --------------------------------------------------------------------------------
 
@@ -993,7 +993,7 @@ function ClientSpawnkill(victim, killer, isheavy)
             spawnkills[killer] = nil
             addPO (killer)
             savePO(ETWsk_pofile)
-            et.trap_DropClient(killer, "temp ban - "..kicksb4.." former kicks for spawn killing!", (ETWsk_banval * math.pow(1,kicksb4)))
+            et.trap_DropClient(killer, "temp ban - "..kicksb4.." former kicks for spawn killing!", (ETWsk_banval * (2^kicksb4)))
             et.G_LogPrint("LUA event: temp SK ban for " .. killername .. " - ".. kicksb4 .. " former kicks for spawn killing\n")
             return
         end
@@ -1010,15 +1010,16 @@ function ClientSpawnkill(victim, killer, isheavy)
         et.trap_SendServerCommand( killer,
             "cpm \"^3ATTENTION: ^1WARNING: ^2You were set to Spectator \"\n")
             et.G_LogPrint("LUA event: " .. killername .. " sent to spectators for spawnkilling (" .. numsk .. " SK)\n")
-    elseif(numsk == ETWsk_kick) then
-        et.trap_SendServerCommand(-1, "chat \"^3ATTENTION: ^7"..killername..
-            " ^2has been kicked - too many spawn kills!\"\n")
-        addPO(killer)
-        savePO(ETWsk_pofile)
-        et.trap_DropClient(killer, "too many spawn kills!", ETWsk_kicklen)
-        et.G_LogPrint("LUA event: temp SK ban for " .. killername .. "\n")
-    elseif(numsk > ETWsk_kick) then
-        -- do nothing you dumb shit
+    elseif(numsk >= ETWsk_kick) then
+   	local kteam = et.gentity_get(killer, "sess.sessionTeam")
+  	 if kteam ~= 3 then
+      	 et.trap_SendServerCommand(-1, "chat \"^3ATTENTION: ^7"..killername..
+        	   " ^2has been kicked - too many spawn kills!\"\n")
+      	 addPO(killer)
+     	  savePO(ETWsk_pofile)
+     	  et.trap_DropClient(killer, "too many spawn kills!", ETWsk_kicklen)
+     	  et.G_LogPrint("LUA event: temp spawnkill ban for " .. killername .. " (" .. numsk .. " SK)\n")
+    	end
     else
         et.gentity_set(killer, "health", -511)
     end
