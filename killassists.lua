@@ -332,8 +332,8 @@ function et_Obituary(victim, killer, mod)
 			end
 			if v_teamid ~= k_teamid then
 				if announce_hp == true then
-					local posk = et.gentity_get(victim, "ps.origin")
-					local posv = et.gentity_get(killer, "ps.origin")
+					local posk = et.gentity_get(killer, "ps.origin")
+					local posv = et.gentity_get(victim, "ps.origin")
 					local killdist = dist(posk, posv)
 					local killerhp = et.gentity_get(killer, "health")
 					local C2 = 2
