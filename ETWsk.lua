@@ -988,13 +988,13 @@ function ClientSpawnkill(victim, killer, isheavy)
         local kicksb4 = isPO(killer)
 
         if kicksb4 > 0 then
-            et.trap_SendServerCommand(-1, "chat \"^3ATTENTION: ^7"..killername..
-                " ^2has been temp banned - repeated spawn killing!\"\n")
+            et.trap_SendServerCommand(-1, "chat \"^3ATTENTION: ^7"..killername.." ^3has been temp banned - repeated spawn killing!\"\n")
             spawnkills[killer] = nil
             addPO (killer)
             savePO(ETWsk_pofile)
             et.trap_DropClient(killer, "temp ban - "..kicksb4.." former kicks for spawn killing!", (ETWsk_banval * (2^kicksb4)))
             et.G_LogPrint("LUA event: temp SK ban for " .. killername .. " - ".. kicksb4 .. " former kicks for spawn killing\n")
+            et.G_globalSound("sound/misc/duke_crapouttahere.wav")
             return
         end
     end
@@ -1003,23 +1003,22 @@ function ClientSpawnkill(victim, killer, isheavy)
     --et.trap_SendServerCommand(killer, "cp \""..killername.." : ^1DO NOT SPAWN KILL!!! \"\n")
 
     if(numsk >= ETWsk_putspec and numsk < ETWsk_kick) then
-        et.trap_SendConsoleCommand(et.EXEC_APPEND, putspec(killer))
+        et.trap_SendConsoleCommand( et.EXEC_APPEND, "ref remove " .. killer .. "\n" )
         sinbinhash[killer] = et.trap_Milliseconds() + sinbin_duration
-        et.trap_SendServerCommand(-1, "chat \"^3ATTENTION: ^7"..killername..
-            " ^2was set to Spectators - too many Spawnkills!\"\n")
-        et.trap_SendServerCommand( killer,
-            "cpm \"^3ATTENTION: ^1WARNING: ^2You were set to Spectator \"\n")
+        et.trap_SendServerCommand(-1, "chat \"^3ATTENTION: ^7"..killername.." ^3was set to Spectators - too many Spawnkills!\"\n")
+        et.trap_SendServerCommand( killer, "cpm \"^3ATTENTION: ^1WARNING: ^3You were set to Spectator\"\n")
             et.G_LogPrint("LUA event: " .. killername .. " sent to spectators for spawnkilling (" .. numsk .. " SK)\n")
     elseif(numsk >= ETWsk_kick) then
-   	local kteam = et.gentity_get(killer, "sess.sessionTeam")
-  	 if kteam ~= 3 then
-      	 et.trap_SendServerCommand(-1, "chat \"^3ATTENTION: ^7"..killername..
-        	   " ^2has been kicked - too many spawn kills!\"\n")
-      	 addPO(killer)
-     	  savePO(ETWsk_pofile)
-     	  et.trap_DropClient(killer, "too many spawn kills!", ETWsk_kicklen)
-     	  et.G_LogPrint("LUA event: temp spawnkill ban for " .. killername .. " (" .. numsk .. " SK)\n")
-    	end
+		if et.gentity_get(killer, "inuse") then
+			local kteam = et.gentity_get(killer, "sess.sessionTeam")
+			if kteam ~= 3 then
+      		et.trap_SendServerCommand(-1, "chat \"^3ATTENTION: ^7"..killername.." ^3has been kicked - too many spawnkills!\"\n")
+      		addPO(killer)
+     	 	savePO(ETWsk_pofile)
+     	 	et.trap_DropClient(killer, "Kicked for too many spawnkills!", ETWsk_kicklen)
+     	 	et.G_LogPrint("LUA event: temp spawnkill ban for " .. killername .. " (" .. numsk .. " SK)\n")
+    		end
+		end
     else
         et.gentity_set(killer, "health", -511)
     end
