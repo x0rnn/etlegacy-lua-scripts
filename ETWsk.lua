@@ -46,6 +46,7 @@ ETWsk_putspec = 1                -- number of sk's needed for setting a client
                                  -- to spectators
 ETWsk_kick = 2                  -- number of sk's needed for kicking a client
 ETWsk_kicklen = 5               -- duration of kick
+first_sk = 0
 -- benny -----------------------------------------------------------------------
 ETWsk_persistentoffender = 1     -- enable punishment 4 persistent spawn killers
 ETWsk_POThreshold = 2            -- if players has been kicked before, he will
@@ -1007,16 +1008,21 @@ function ClientSpawnkill(victim, killer, isheavy)
         sinbinhash[killer] = et.trap_Milliseconds() + sinbin_duration
         et.trap_SendServerCommand(-1, "chat \"^3ATTENTION: ^7"..killername.." ^3was set to Spectators - too many Spawnkills!\"\n")
         et.trap_SendServerCommand( killer, "cpm \"^3ATTENTION: ^1WARNING: ^3You were set to Spectator\"\n")
-            et.G_LogPrint("LUA event: " .. killername .. " sent to spectators for spawnkilling (" .. numsk .. " SK)\n")
+        et.G_LogPrint("LUA event: " .. killername .. " sent to spectators for spawnkilling (" .. numsk .. " SK)\n")
+        et.G_globalSound("sound/misc/referee.wav")
+        first_sk = et.trap_Milliseconds()
     elseif(numsk >= ETWsk_kick) then
-		if et.gentity_get(killer, "inuse") then
+		if tonumber(et.gentity_get(killer, "pers.connected")) == 2 then
 			local kteam = et.gentity_get(killer, "sess.sessionTeam")
 			if kteam ~= 3 then
-      		et.trap_SendServerCommand(-1, "chat \"^3ATTENTION: ^7"..killername.." ^3has been kicked - too many spawnkills!\"\n")
-      		addPO(killer)
-     	 	savePO(ETWsk_pofile)
-     	 	et.trap_DropClient(killer, "Kicked for too many spawnkills!", ETWsk_kicklen)
-     	 	et.G_LogPrint("LUA event: temp spawnkill ban for " .. killername .. " (" .. numsk .. " SK)\n")
+				if first_sk ~= et.trap_Milliseconds() then
+					et.trap_SendServerCommand(-1, "chat \"^3ATTENTION: ^7"..killername.." ^3has been kicked - too many spawnkills!\"\n")
+					addPO(killer)
+					savePO(ETWsk_pofile)
+					et.trap_DropClient(killer, "kicked for too many spawnkills!", ETWsk_kicklen)
+					et.G_LogPrint("LUA event: temp spawnkill ban for " .. killername .. " (" .. numsk .. " SK)\n")
+					et.G_globalSound("sound/misc/duke_crapouttahere.wav")
+				end
     		end
 		end
     else
