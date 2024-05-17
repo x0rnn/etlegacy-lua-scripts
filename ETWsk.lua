@@ -1015,7 +1015,7 @@ function ClientSpawnkill(victim, killer, isheavy)
 		if tonumber(et.gentity_get(killer, "pers.connected")) == 2 then
 			local kteam = et.gentity_get(killer, "sess.sessionTeam")
 			if kteam ~= 3 then
-				if first_sk ~= et.trap_Milliseconds() then
+				if et.trap_Milliseconds() - first_sk > 30000 then
 					et.trap_SendServerCommand(-1, "chat \"^3ATTENTION: ^7"..killername.." ^3has been kicked - too many spawnkills!\"\n")
 					addPO(killer)
 					savePO(ETWsk_pofile)
