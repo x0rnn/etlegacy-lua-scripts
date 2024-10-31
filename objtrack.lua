@@ -51,7 +51,7 @@ function et_Print(text)
 			local x = 1
 			for index in pairs(objcarriers_id) do
 				if objcarriers[objcarriers_id[x]] == true then
-					local redflag = et.gentity_get(objcarriers_id[x], "ps.powerups", 6)
+					local redflag = et.gentity_get(objcarriers_id[x], "ps.powerups", 5)
 					if redflag == 0 then
 						local name = et.gentity_get(objcarriers_id[x], "pers.netname")
 						et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7secured the East Radar Parts!\"\n")
@@ -67,7 +67,7 @@ function et_Print(text)
 			local x = 1
 			for index in pairs(objcarriers_id) do
 				if objcarriers[objcarriers_id[x]] == true then
-					local redflag = et.gentity_get(objcarriers_id[x], "ps.powerups", 6)
+					local redflag = et.gentity_get(objcarriers_id[x], "ps.powerups", 5)
 					if redflag == 0 then
 						local name = et.gentity_get(objcarriers_id[x], "pers.netname")
 						et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7secured the West Radar Parts!\"\n")
@@ -115,7 +115,7 @@ function et_Print(text)
 			local x = 1
 			for index in pairs(goldcarriers_id) do
 				if goldcarriers[goldcarriers_id[x]] == true then
-					local redflag = et.gentity_get(goldcarriers_id[x], "ps.powerups", 6)
+					local redflag = et.gentity_get(goldcarriers_id[x], "ps.powerups", 5)
 					if redflag == 0 then
 						local name = et.gentity_get(goldcarriers_id[x], "pers.netname")
 						et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7secured the first Gold Crate!\"\n")
@@ -227,7 +227,7 @@ function et_Print(text)
 			local x = 1
 			for index in pairs(goldcarriers_id) do
 				if goldcarriers[goldcarriers_id[x]] == true then
-					local redflag = et.gentity_get(goldcarriers_id[x], "ps.powerups", 6)
+					local redflag = et.gentity_get(goldcarriers_id[x], "ps.powerups", 5)
 					if redflag == 0 then
 						local name = et.gentity_get(goldcarriers_id[x], "pers.netname")
 						et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7secured a Gold Crate!\"\n")
@@ -406,7 +406,7 @@ function et_Print(text)
 			local x = 1
 			for index in pairs(goldcarriers_id) do
 				if goldcarriers[goldcarriers_id[x]] == true then
-					local redflag = et.gentity_get(goldcarriers_id[x], "ps.powerups", 6)
+					local redflag = et.gentity_get(goldcarriers_id[x], "ps.powerups", 5)
 					if redflag == 0 then
 						local name = et.gentity_get(goldcarriers_id[x], "pers.netname")
 						et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7secured the first Gold Crate!\"\n")
@@ -456,7 +456,7 @@ function et_Print(text)
 			--local x = 1
 			--for index in pairs(objcarriers_id) do
 				--if objcarriers[objcarriers_id[x]] == true then
-					--local redflag = et.gentity_get(objcarriers_id[x], "ps.powerups", 6)
+					--local redflag = et.gentity_get(objcarriers_id[x], "ps.powerups", 5)
 					--if redflag == 0 then
 						--local name = et.gentity_get(objcarriers_id[x], "pers.netname")
 						--et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7secured the North Documents!\"\n")
@@ -472,7 +472,7 @@ function et_Print(text)
 			--local x = 1
 			--for index in pairs(objcarriers_id) do
 				--if objcarriers[objcarriers_id[x]] == true then
-					--local redflag = et.gentity_get(objcarriers_id[x], "ps.powerups", 6)
+					--local redflag = et.gentity_get(objcarriers_id[x], "ps.powerups", 5)
 					--if redflag == 0 then
 						--local name = et.gentity_get(objcarriers_id[x], "pers.netname")
 						--et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7secured the South Documents!\"\n")
@@ -731,7 +731,7 @@ function et_Print(text)
 				--local x = 1
 				--for index in pairs(objcarriers_id) do
 					--if objcarriers[objcarriers_id[x]] == true then
-						--local redflag = et.gentity_get(objcarriers_id[x], "ps.powerups", 6)
+						--local redflag = et.gentity_get(objcarriers_id[x], "ps.powerups", 5)
 						--if redflag == 0 then
 							--local name = et.gentity_get(objcarriers_id[x], "pers.netname")
 							--et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7secured the first Gold Crate!\"\n")
