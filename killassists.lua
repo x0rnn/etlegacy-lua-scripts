@@ -26,7 +26,7 @@ mod_weapons = {
 [7]=	"Colt",
 [8]=	"MP40",
 [9]=	"Thompson",
-[10]=	"Sten", 
+[10]=	"Sten",
 [11]=	"Garand",
 [12]=	"Luger",
 [13]=	"FG42",
@@ -101,7 +101,7 @@ function hitType(clientNum)
 		if playerHitRegions[hitType] > hitRegionsData[clientNum][hitType] then
 			hitRegionsData[clientNum] = playerHitRegions
 			return hitType
-		end		
+		end
 	end
 	hitRegionsData[clientNum] = playerHitRegions
 	return -1
@@ -215,7 +215,7 @@ function et_Obituary(victim, killer, mod)
 				end
 				if assist_dmg[keyset[j]] > killer_dmg then
 					if not has_value(explosives, mod) and not has_value(explosives, last_assist_wpn[keyset[j]]) then
-						if v_teamid ~= et.gentity_get(keyset[j], "sess.sessionTeam") and v_teamid ~= k_teamid then 
+						if v_teamid ~= et.gentity_get(keyset[j], "sess.sessionTeam") and v_teamid ~= k_teamid then
 							killsteals[killer] = killsteals[killer] + 1
 						end
 						if assist_dmg[keyset[j]] > max then
@@ -240,7 +240,7 @@ function et_Obituary(victim, killer, mod)
 								names_cens = names
 							end
 						else
-							local wpns = table.concat(assist_wpns[keyset[j]], "^z, ^" .. C) 
+							local wpns = table.concat(assist_wpns[keyset[j]], "^z, ^" .. C)
 							names = et.gentity_get(keyset[j], "pers.netname") .. " ^z(^" .. C .. wpns .. "^z; ^" .. C .. assist_dmg[keyset[j]] .. "^z)"
 							if et.gentity_get(keyset[j], "sess.sessionTeam") ~= k_teamid then
 								names_cens = "^" .. C .. "TEAMMATE ^z(^" .. C .. wpns .. "^z; ^" .. C .. assist_dmg[keyset[j]] .. "^z)"
@@ -305,7 +305,7 @@ function et_Obituary(victim, killer, mod)
 				end
 			end
 			if max > 0 then
-				if v_teamid ~= et.gentity_get(max_id, "sess.sessionTeam") and v_teamid ~= k_teamid then 
+				if v_teamid ~= et.gentity_get(max_id, "sess.sessionTeam") and v_teamid ~= k_teamid then
 					if announce_steal == true then
 						et.trap_SendServerCommand(killer, "bp \"^zKill stolen from: " .. et.gentity_get(max_id, "pers.netname") .. "\";")
 						et.trap_SendServerCommand(max_id, "bp \"^zKill stolen by: " .. et.gentity_get(killer, "pers.netname") .. "\";")

@@ -95,7 +95,7 @@ function getKeysSortedByValue(tbl, sortFunction)
 	table.sort(keys, function(a, b)
 		return sortFunction(tbl[a], tbl[b])
 	end)
-	
+
 	return keys
 end
 
@@ -112,9 +112,9 @@ function getAllHitRegions(clientNum)
 	local regions = {}
 	for index, hitType in ipairs(HR_TYPES) do
 		regions[hitType] = et.gentity_get(clientNum, "pers.playerStats.hitRegions", hitType)
-	end       
+	end
 	return regions
-end     
+end
 
 function hitType(clientNum)
 	local playerHitRegions = getAllHitRegions(clientNum)
@@ -126,7 +126,7 @@ function hitType(clientNum)
 		if playerHitRegions[hitType] > hitRegionsData[clientNum][hitType] then
 			hitRegionsData[clientNum] = playerHitRegions
 			return hitType
-		end		
+		end
 	end
 	hitRegionsData[clientNum] = playerHitRegions
 	return -1
@@ -186,39 +186,39 @@ function topshots_f(id)
 			else
 				kd = k + 1
 			end
-			
+
 			-- damage given
-			if dg > max[1] then 
+			if dg > max[1] then
 				max[1] = dg
 				max_id[1] = i
 			end
 			-- damage received
-			if dr > max[2] then 
+			if dr > max[2] then
 				max[2] = dr
 				max_id[2] = i
 			end
 			-- team damage given
-			if tdg > max[3] then 
+			if tdg > max[3] then
 				max[3] = tdg
 				max_id[3] = i
 			end
 			-- team damage received
-			if tdr > max[4] then 
+			if tdr > max[4] then
 				max[4] = tdr
 				max_id[4] = i
 			end
 			-- teamkills
-			if tk > max[5] then 
+			if tk > max[5] then
 				max[5] = tk
 				max_id[5] = i
 			end
 			-- selfkills
-			if sk > max[6] then 
+			if sk > max[6] then
 				max[6] = sk
 				max_id[6] = i
 			end
 			-- deaths
-			if d > max[7] then 
+			if d > max[7] then
 				max[7] = d
 				max_id[7] = i
 			end
@@ -232,7 +232,7 @@ function topshots_f(id)
 				end
 			end
 			-- quickest lightweapon multikill
-			if topshots[i][14] >= max[9] then 
+			if topshots[i][14] >= max[9] then
 				if topshots[i][14] > max[9] then
 					max[9] = topshots[i][14]
 					max[10] = topshots[i][15]
@@ -386,7 +386,7 @@ function topshots_f(id)
 				max_id[37] = i
 			end
 			-- most gibs
-			if gibs > max[38] then 
+			if gibs > max[38] then
 				max[38] = gibs
 				max_id[38] = i
 			end
@@ -687,17 +687,17 @@ function et_Print(text)
 			topshots[tonumber(zombie)][21] = topshots[tonumber(zombie)][21] + 1
 		end
 		if string.find(text, "Dynamite_Plant") then
-   	     local i, j = string.find(text, "%d+")   
+   	     local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			topshots[id][22] = topshots[id][22] + 1
 	    end
 		if string.find(text, "Dynamite_Diffuse") then
-	   	 local i, j = string.find(text, "%d+")   
+	   	 local i, j = string.find(text, "%d+")
 		    local id = tonumber(string.sub(text, i, j))
 			topshots[id][23] = topshots[id][23] + 1
 	    end
 		if string.find(text, "team_CTF_redflag") or string.find(text, "team_CTF_blueflag") then
-   	     local i, j = string.find(text, "%d+")   
+   	     local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			if string.find(text, "team_CTF_redflag") then
 				local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
@@ -714,7 +714,7 @@ function et_Print(text)
 					topshots[id][28] = topshots[id][28] + 1
 				end
 			end
-	    end 
+	    end
 	end
 
     if kendofmap and string.find(text, "^WeaponStats: ") == 1 then
@@ -856,7 +856,7 @@ function et_Obituary(victim, killer, mod)
 				kills[killer] = kills[killer] + 1
 				deaths[victim] = deaths[victim] + 1
 				worst_enemy[victim][killer] = worst_enemy[victim][killer] + 1
-				easiest_prey[killer][victim] = easiest_prey[killer][victim] + 1 
+				easiest_prey[killer][victim] = easiest_prey[killer][victim] + 1
 				local posk = et.gentity_get(killer, "ps.origin")
 				local posv = et.gentity_get(victim, "ps.origin")
 				local killdist = dist(posk, posv)
@@ -937,7 +937,7 @@ function et_Obituary(victim, killer, mod)
              killing_sprees[victim] = 0
              death_sprees[killer] = 0
            end
-           
+
 		if has_value(light_weapons, mod) or has_value(explosives, mod) then
 			local killer_dmg = 0
 			local assist_dmg = {}
@@ -971,7 +971,7 @@ function et_Obituary(victim, killer, mod)
 				end
 				if assist_dmg[keyset[j]] > killer_dmg then
 					if not has_value(explosives, mod) and not has_value(explosives, last_assist_wpn[keyset[j]]) then
-						if v_teamid ~= et.gentity_get(keyset[j], "sess.sessionTeam") and v_teamid ~= k_teamid then 
+						if v_teamid ~= et.gentity_get(keyset[j], "sess.sessionTeam") and v_teamid ~= k_teamid then
 							topshots[killer][30] = topshots[killer][30] + 1
 						end
 					end
@@ -1026,7 +1026,7 @@ function et_RunFrame(levelTime)
 	    end
 	end
 	gamestate = tonumber(et.trap_Cvar_Get("gamestate"))
-	
+
     if math.fmod(levelTime, 1000) ~= 0 then return end
     if gamestate == 0 then
 		redlimbo1 = tonumber(et.trap_Cvar_Get("g_redlimbotime"))
@@ -1189,12 +1189,12 @@ function send_table(id, columns, rows, separator)
 
     --table.foreach(rows, function(_, row)
     for _, row in pairs(rows) do
-        
+
         --table.foreach(row, function(index, value)
         for index, value in pairs(row) do
-            
+
             local len = string.len(et.Q_CleanStr(value))
-            
+
             if lens[index] < len then
                 lens[index] = len
             end

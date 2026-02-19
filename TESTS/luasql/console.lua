@@ -1,10 +1,10 @@
---  
+--
 -- ET Lua SQL console - console.lua (p) 2010-2016 IRATA [*]
 --
 --
 -- Execute SQL via the ET server console like
--- [commandprefix]sql "select * from etl_version" 
--- 
+-- [commandprefix]sql "select * from etl_version"
+--
 -- Enables faster debugging for SQL based Lua scripts, adds some new options and is nice to have ...
 --
 -- Notes:
@@ -22,7 +22,7 @@ tablespacer = " " -- use something like " " or "|"
 -- db connection data
 dbms	= "SQLite" -- possible values "mySQL", "postgreSQL" and "SQLite"
 dbname  = "file::memory:?cache=shared" -- also filename for SQLite file
-dbuser  = "myuser" 
+dbuser  = "myuser"
 dbpassword = "mypassword"
 --------------------------------------------------------------------------------
 env = nil
@@ -34,7 +34,7 @@ if dbms == "mySQL" then
   	env = assert (luasql.mysql())
   	con = assert (env:connect( dbname, dbuser, dbpassword, dbhostname, dbport ))
 elseif dbms == "SQLite" then
-	luasql = require "luasql.sqlite3" 
+	luasql = require "luasql.sqlite3"
 	env = assert (luasql.sqlite3())
 	con = assert (env:connect( dbname )) -- this opens OR creates a sqlite db - if this Lua is loaded db is created -fix this?
 else
@@ -57,27 +57,27 @@ function et_InitGame( levelTime, randomSeed, restart )
 end
 
 function et_ConsoleCommand( command )
-	
+
 	if debug == 1 then
 	  et.trap_SendServerCommand( -1 ,"chat \"" .. color .. "ConsoleCommand - command: " .. command )
 	end
 
-	-- TODO should be used by admins only 
+	-- TODO should be used by admins only
 	if string.lower(et.trap_Argv(0)) == commandprefix.."sql" then
 
 		-- TODO sanity checks - help output
 		-- 2 ?
-		if (et.trap_Argc() < 1) then 
+		if (et.trap_Argc() < 1) then
 			et.G_Print(color..commandprefix.."sql is used to access the db with common sql commands.\n" .. "usage: ...\n")
 			return 1
-		end 
-		
+		end
+
 		-- we have some cases now - get the sql command ... insert, update
 		local cmd = string.lower( string.sub(et.trap_Argv(1), 0 , 6) )
 
 		if debug == 1 then
 			et.G_Print(color .. commandprefix.."sql: " .. et.trap_Argv(1) .. "\n")
-		end		
+		end
 
 		-- ok, does work
 		if cmd == "select" then
@@ -103,7 +103,7 @@ function et_ConsoleCommand( command )
 			res = assert (con:execute(et.trap_Argv(1)))
 			et.G_Print(res .. "\n")
 
-		elseif cmd == "vacuum" then 
+		elseif cmd == "vacuum" then
 			-- only sqlite	defrag the database
 			if dbms == "SQLite" then
 				res = assert (con:execute(et.trap_Argv(1)))
@@ -114,22 +114,22 @@ function et_ConsoleCommand( command )
 		else
 			-- cmd is 5 char based ?
 			cmd = string.lower( string.sub(et.trap_Argv(1), 0 , 5) )
-			
-			-- alter 
+
+			-- alter
 			if cmd == "alter" then
 				res = assert (con:execute(et.trap_Argv(1)))
 				et.G_Print(res .. "\n")
-			else 
+			else
 				-- cmd is 4 char based
 				cmd = string.lower( string.sub(et.trap_Argv(1), 0 , 4) )
-				
+
 				-- drop
 				if cmd == "drop" then
 					-- create a row of data
 					res = assert (con:execute(et.trap_Argv(1)))
 					cur:close()
-				
-				-- untested (only mysql atm)	
+
+				-- untested (only mysql atm)
 				elseif cmd == "show" then
 					cur = assert (con:execute(et.trap_Argv(1)))
 					row = cur:fetch ({}, "a")	-- the rows will be indexed by field names
@@ -146,7 +146,7 @@ function et_ConsoleCommand( command )
 						row = cur:fetch (row, "a")	-- reusing the table of results
 					end
 					cur:close()
-						
+
 				else
 					et.G_Print(color..commandprefix.."sql: Command unknown\n")
 				end
@@ -158,11 +158,11 @@ function et_ConsoleCommand( command )
 end
 
 function shuttdownDBMS()
-    
+
 	if dbms == "mySQL" or dbms == "SQLite" then
 		con:close()
 		env:close()
-	else 
+	else
 		-- should never happen ;)
 		error("DBMS not supported.")
 	end

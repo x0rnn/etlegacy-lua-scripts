@@ -84,7 +84,7 @@ end
 function announceSpree(clientNumber, guid)
     local spree = killingSprees[guid]
     local announcement = SPREE_ANNOUNCEMENTS[spree]
-    
+
     if announcement then
         local name = getName(clientNumber)
         local message = string.format(announcement.message, name)
@@ -97,7 +97,7 @@ end
 function announceEndOfSpree(target, attacker)
     local targetGuid = getGuid(target)
     local spree = killingSprees[targetGuid]
-    
+
     if spree >= SPREE then
         local message = string.format(
             "%s^7 killing spree ended (^3%d^7), killed by %s^7!",
@@ -113,18 +113,18 @@ end
 function et_Obituary(target, attacker, meansOfDeath)
     local targetTeam = getTeam(target)
     local attackerTeam = getTeam(attacker)
-    
+
     local suicide = target == attacker
     local teamkill = targetTeam == attackerTeam
     local killerIsNotPlayer = killer == WORLDSPAWN_ENTITY or killer == ENTITYNUM_NONE
-    
+
     announceEndOfSpree(target, attacker)
 
     local targetGuid = getGuid(target)
     killingSprees[targetGuid] = 0
 
     if suicide or teamkill or killerIsNotPlayer then
-        return 
+        return
     end
 
     local attackerGuid = getGuid(attacker)
