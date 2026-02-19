@@ -23,7 +23,7 @@ end
 function et_Print(text)
 	if mapname == "radar" then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -83,7 +83,7 @@ function et_Print(text)
 
 	if mapname == "goldrush" or mapname == "uje_goldrush" or mapname == "goldrush-ga" or mapname == "goldrush-gals" then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -94,7 +94,7 @@ function et_Print(text)
 					if firstflag == false then
 						et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7stole the first Gold Crate!\"\n")
 					else
-						et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7stole the second Gold Crate!\"\n") 
+						et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7stole the second Gold Crate!\"\n")
 					end
 				elseif #goldcarriers_id == 2 then
 					et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7stole the second Gold Crate!\"\n")
@@ -137,7 +137,7 @@ function et_Print(text)
 
 	if (string.find(mapname, "frostbite")) then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -174,7 +174,7 @@ function et_Print(text)
 
 	if (string.find(mapname, "missile")) then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -211,7 +211,7 @@ function et_Print(text)
 
 	if (string.find(mapname, "sp_delivery")) then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -242,7 +242,7 @@ function et_Print(text)
 
 	if mapname == "sw_goldrush_te" then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -264,7 +264,7 @@ function et_Print(text)
 
 	if mapname == "bremen_b3" then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -286,7 +286,7 @@ function et_Print(text)
 
 	if (string.find(mapname, "adlernest")) then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -308,7 +308,7 @@ function et_Print(text)
 
 	if mapname == "et_beach" then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -330,7 +330,7 @@ function et_Print(text)
 
 	if mapname == "venice" then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -352,7 +352,7 @@ function et_Print(text)
 
 	if mapname == "library_b3" then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -374,7 +374,7 @@ function et_Print(text)
 
 	if mapname == "pirates" then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -385,7 +385,7 @@ function et_Print(text)
 					if firstflag == false then
 						et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7stole the first Gold Crate!\"\n")
 					else
-						et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7stole the second Gold Crate!\"\n") 
+						et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7stole the second Gold Crate!\"\n")
 					end
 				elseif #goldcarriers_id == 2 then
 					et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7stole the second Gold Crate!\"\n")
@@ -428,7 +428,7 @@ function et_Print(text)
 
 	--if mapname == "karsiah_te2" then
 		--if(string.find(text, "team_CTF_redflag")) then
-			--local i, j = string.find(text, "%d+")   
+			--local i, j = string.find(text, "%d+")
 	        --local id = tonumber(string.sub(text, i, j))
 			--local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			--local name = et.gentity_get(id, "pers.netname")
@@ -489,7 +489,7 @@ function et_Print(text)
 	-- karsiah_te2 alternate script (karsiah_te3)
 	if (string.find(mapname, "karsiah_te2")) then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -526,7 +526,7 @@ function et_Print(text)
 
 	if (string.find(mapname, "karsiah_te3")) then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -563,7 +563,7 @@ function et_Print(text)
 
 	if mapname == "et_ufo_final" then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -585,7 +585,7 @@ function et_Print(text)
 
 	if mapname == "sos_secret_weapon" then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -607,7 +607,7 @@ function et_Print(text)
 
 	if mapname == "falkenstein_b3" then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -629,7 +629,7 @@ function et_Print(text)
 
 	if (string.find(mapname, "decay")) then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -683,7 +683,7 @@ function et_Print(text)
 	-- decay_b7 alternate script
 	--if mapname == "decay_b7" then
 		--if(string.find(text, "team_CTF_redflag")) then
-			--local i, j = string.find(text, "%d+")   
+			--local i, j = string.find(text, "%d+")
 	        --local id = tonumber(string.sub(text, i, j))
 			--local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			--local name = et.gentity_get(id, "pers.netname")
@@ -697,7 +697,7 @@ function et_Print(text)
 						--if firstflag == false then
 							--et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7stole the first Gold Crate!\"\n")
 						--else
-							--et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7stole the second Gold Crate!\"\n") 
+							--et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7stole the second Gold Crate!\"\n")
 						--end
 					--elseif #objcarriers_id == 2 then
 						--et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7stole the second Gold Crate!\"\n")
@@ -753,7 +753,7 @@ function et_Print(text)
 
 	if mapname == "te_escape2" then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -775,7 +775,7 @@ function et_Print(text)
 
 	if mapname == "radar_phx_b_3" or (string.find(mapname, "radar_truck")) then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -797,7 +797,7 @@ function et_Print(text)
 
 	if mapname == "et_village" then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -819,7 +819,7 @@ function et_Print(text)
 
 	if mapname == "1944_beach" then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -841,7 +841,7 @@ function et_Print(text)
 
 	if mapname == "et_brewdog" then
 		if(string.find(text, "team_CTF_redflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -863,7 +863,7 @@ function et_Print(text)
 
 	if (string.find(mapname, "_ice")) then
 		if(string.find(text, "team_CTF_blueflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -885,7 +885,7 @@ function et_Print(text)
 
 	if mapname == "warbell" then
 		if(string.find(text, "team_CTF_blueflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -907,7 +907,7 @@ function et_Print(text)
 
 	if mapname == "etl_warbell" then
 		if(string.find(text, "team_CTF_blueflag")) then
-			local i, j = string.find(text, "%d+")   
+			local i, j = string.find(text, "%d+")
 	        local id = tonumber(string.sub(text, i, j))
 			local team = tonumber(et.gentity_get(id, "sess.sessionTeam"))
 			local name = et.gentity_get(id, "pers.netname")
@@ -1062,7 +1062,7 @@ function et_Obituary(victim, killer, mod)
 			x = x + 1
 		end
 	end
-	
+
 	--if mapname == "karsiah_te2" then
 		--objcarriers[victim] = nil
 		--local x = 1
@@ -1073,7 +1073,7 @@ function et_Obituary(victim, killer, mod)
 			--x = x + 1
 		--end
 	--end
-	
+
 	-- karsiah_te2 alternate script (karsiah_te3)
 	if mapname == "karsiah_te2" then
 		objcarriers[victim] = nil
@@ -1081,14 +1081,14 @@ function et_Obituary(victim, killer, mod)
 			table.remove(objcarriers_id, 1)
 		end
 	end
-	
+
 	if mapname == "karsiah_te3" then
 		objcarriers[victim] = nil
 		if objcarriers_id[1] == victim then
 			table.remove(objcarriers_id, 1)
 		end
 	end
-	
+
 	if mapname == "et_ufo_final" then
 		doccarriers[victim] = nil
 		if doccarriers_id[1] == victim then
@@ -1259,7 +1259,7 @@ function et_ClientDisconnect(i)
 			x = x + 1
 		end
 	end
-	
+
 	--if mapname == "karsiah_te2" then
 		--objcarriers[i] = nil
 		--local x = 1
@@ -1270,7 +1270,7 @@ function et_ClientDisconnect(i)
 			--x = x + 1
 		--end
 	--end
-	
+
 	-- karsiah_te2 alternate script (karsiah_te3)
 	if mapname == "karsiah_te2" then
 		objcarriers[i] = nil
@@ -1278,14 +1278,14 @@ function et_ClientDisconnect(i)
 			table.remove(objcarriers_id, 1)
 		end
 	end
-	
+
 	if mapname == "karsiah_te3" then
 		objcarriers[i] = nil
 		if objcarriers_id[1] == i then
 			table.remove(objcarriers_id, 1)
 		end
 	end
-	
+
 	if mapname == "et_ufo_final" then
 		doccarriers[i] = nil
 		if doccarriers_id[1] == i then

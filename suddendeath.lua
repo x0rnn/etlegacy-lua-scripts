@@ -31,7 +31,7 @@ sudden_death = false
 first_obj = false
 first_obj_time = 0
 second_obj_time = 0
-first_obj_loc = "" 
+first_obj_loc = ""
 second_obj_loc = ""
 dyna_counter = 0
 dyna_maps = {"battery", "sw_battery", "fueldump", "braundorf_b4", "etl_braundorf", "mp_sub_rc1", "sub2", "sw_oasis_b3", "oasis", "tc_base", "etl_base", "erdenberg_t2"}
@@ -44,8 +44,8 @@ COLOR = {}
 COLOR.PLACE = '^8'
 COLOR.TEXT = '^w'
 COLOR.TIME = '^8' -- this constant is changing in the print_message() function
- 
-CHAT = "bp" 
+
+CHAT = "bp"
 POPUP = "legacy"
 
 timer = {}
@@ -119,7 +119,7 @@ function et_RunFrame( levelTime )
 				if type(key) == "number" then
 					if timer[dyno]["time"] - current == key then
 						send_print(timer,dyno,key)
-						timer[dyno][key] = nil	
+						timer[dyno][key] = nil
 						--et.G_LogPrint("dynamite key deleted: " .. dyno .." key: " .. key .. "\n")
 					end
 				end
@@ -154,7 +154,7 @@ function et_RunFrame( levelTime )
 					end
 				end
 			end
-		
+
 			if sudden_death == true then
 				for i=0,tonumber(et.trap_Cvar_Get("sv_maxclients"))-1 do
 					local team = tonumber(et.gentity_get(i, "sess.sessionTeam"))
@@ -271,13 +271,13 @@ function et_Print(text)
 		end
 		maptime = tonumber(et.trap_Cvar_Get("timelimit"))
 	end
-	
+
 	if string.find(text, "Dynamite_Plant") and not string.find(text, "say") then
 		local junk1,junk2,id,loc = string.find(text, "^Dynamite_Plant:%s+(%d+)%s+([^\n]+)")
 		table.insert(plants, {time=et.trap_Milliseconds(), name=et.gentity_get(id, "pers.netname"), location=loc, pos=et.gentity_get(id, "r.currentOrigin")})
 	elseif string.find(text, "Dynamite_Diffuse") and not string.find(text, "say") then
 		local junk1,junk2,id,loc = string.find(text, "^Dynamite_Diffuse:%s+(%d+)%s+([^\n]+)")
-		table.insert(defuses, {time=et.trap_Milliseconds(), name=et.gentity_get(id, "pers.netname"), location=loc}) 
+		table.insert(defuses, {time=et.trap_Milliseconds(), name=et.gentity_get(id, "pers.netname"), location=loc})
 	end
 
 	--legacy popup: axis planted "the Old City MG Nest"
@@ -286,7 +286,7 @@ function et_Print(text)
 		start,stop,team,plant = string.find(text, POPUP .. " popup: (%S+) planted \"([^%\"]*)\"")
 		if start and stop then -- dynamite planted
 			local timestamp = et.trap_Milliseconds()
-			if team == "axis" then team = 1 
+			if team == "axis" then team = 1
 			else team = 2 end
 			index = #timer+1
 			timer[index] = {}
@@ -473,7 +473,7 @@ function et_Print(text)
 		start,stop,team,plant = string.find(text, POPUP .. " popup: (%S+) defused \"([^%\"]*)\"")
 		if start and stop then -- dynamite defused
 			local timestamp = et.trap_Milliseconds()
-			if team == "axis" then team = 1 
+			if team == "axis" then team = 1
 			else team = 2 end
 
 			if mapname == "battery" or mapname == "sw_battery" or mapname == "fueldump" or mapname == "braundorf_b4" or mapname == "etl_braundorf" or mapname == "mp_sub_rc1" or mapname == "sub2" then
@@ -506,7 +506,7 @@ function et_Print(text)
 								for i, dyna in ipairs(defuses) do
 									if dyna.time == timestamp -1 then
 										if plant == dyna.location then
-											et.trap_SendServerCommand(-1, "chat \"" .. dyna.name .. " ^7defused ^1" .. plant .. "^7!\"")	
+											et.trap_SendServerCommand(-1, "chat \"" .. dyna.name .. " ^7defused ^1" .. plant .. "^7!\"")
 											break
 										end
 									end
@@ -563,7 +563,7 @@ function et_Print(text)
 										first_obj_time = second_obj_time
 										first_obj_loc = second_obj_loc
 										second_obj_time = 0
-										second_obj_loc = "" 
+										second_obj_loc = ""
 									elseif second_obj_loc == plant then
 										second_obj_time = 0
 										second_obj_loc = ""
@@ -592,7 +592,7 @@ function et_Print(text)
 								for i, dyna in ipairs(defuses) do
 									if dyna.time >= timestamp - 10 and dyna.time <= timestamp then
 										if plant == dyna.location then
-											et.trap_SendServerCommand(-1, "chat \"" .. dyna.name .. " ^7defused ^1" .. plant .. "^7!\"")	
+											et.trap_SendServerCommand(-1, "chat \"" .. dyna.name .. " ^7defused ^1" .. plant .. "^7!\"")
 											break
 										end
 									end
@@ -608,7 +608,7 @@ function et_Print(text)
 										first_obj_time = second_obj_time
 										first_obj_loc = second_obj_loc
 										second_obj_time = 0
-										second_obj_loc = "" 
+										second_obj_loc = ""
 									elseif second_obj_loc == plant then
 										second_obj_time = 0
 										second_obj_loc = ""
@@ -638,7 +638,7 @@ function et_Print(text)
 								for i, dyna in ipairs(defuses) do
 									if dyna.time >= timestamp - 10 and dyna.time <= timestamp then
 										if plant == dyna.location then
-											et.trap_SendServerCommand(-1, "chat \"" .. dyna.name .. " ^7defused ^1" .. plant .. "^7!\"")	
+											et.trap_SendServerCommand(-1, "chat \"" .. dyna.name .. " ^7defused ^1" .. plant .. "^7!\"")
 											break
 										end
 									end
@@ -681,7 +681,7 @@ function et_Print(text)
 						et.G_LogPrint("LUA event: " .. mapname .. " Dynamite sudden death, Allies win!\n")
 					end
 				end
-				et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7destroyed ^1" .. plant .. "^7!\"")	
+				et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7destroyed ^1" .. plant .. "^7!\"")
 			else
 				et.trap_SendServerCommand(-1, "chat \"" .. name .. " ^7destroyed ^1" .. plant .. "^7!\"")
 				if sudden_death == true then

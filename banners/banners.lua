@@ -18,9 +18,9 @@ local modname = "banners"
 local version = "0.2"
 
 -- Map Data Structure
-	
+
 local MapPrototype = {}
-MapPrototype.__index = MapPrototype 
+MapPrototype.__index = MapPrototype
 
 function Map(tab)
 	local obj = { _storage = assign({}, tab) }
@@ -31,7 +31,7 @@ end
 function MapPrototype:set(key, value)
 	self._storage[key] = value
 	return value
-end 
+end
 
 function MapPrototype:get(key, def)
 	return self._storage[key] or self._storage[def]
@@ -112,7 +112,7 @@ end
 -- Main Code --
 
 local DEFAULT_TIME           = 5000
-local DEFAULT_TIME_THRESHOLD = 2000 
+local DEFAULT_TIME_THRESHOLD = 2000
 local DEFAULT_LOCATION       = "top"
 local bannerSystem = nil -- BannerSystem instance global (well, local)
 local MAX_BANNERS            = 10
@@ -126,14 +126,14 @@ function et_InitGame(levelTime, randomSeed, restart)
 		center = "cpm",
 		chat   = "chat"
 	}
-	
+
 	local g_bannerTime = tonumber(et.trap_Cvar_Get("g_bannerTime")) or DEFAULT_TIME
 	local g_bannerLocation = string.lower(et.trap_Cvar_Get("g_bannerLocation")) or DEFAULT_LOCATION
 
 	if (g_bannerTime < DEFAULT_TIME_THRESHOLD) then
 		et.G_Print(
 			string.format(
-				"^3%s.lua: Warning! You cannot set banner time lower than %ims, forcing to %ims.\n", 
+				"^3%s.lua: Warning! You cannot set banner time lower than %ims, forcing to %ims.\n",
 					modname, DEFAULT_TIME_THRESHOLD, DEFAULT_TIME))
 		g_bannerTime = DEFAULT_TIME
 	end
@@ -141,7 +141,7 @@ function et_InitGame(levelTime, randomSeed, restart)
 	if not locationMapping:has(g_bannerLocation) then
 		et.G_Print(
 			string.format(
-				"^3%s.lua: Warning! Invalid location '%s', forcing to '%s'; valid locations: %s.\n", 
+				"^3%s.lua: Warning! Invalid location '%s', forcing to '%s'; valid locations: %s.\n",
 					modname, g_bannerLocation, DEFAULT_LOCATION, locationMapping:toKeyString()))
 		g_bannerLocation = DEFAULT_LOCATION
 	end
@@ -165,7 +165,7 @@ function et_InitGame(levelTime, randomSeed, restart)
 	if bannerSystem:count() > 0 then
 		et.G_Print(
 			string.format(
-				"^2%s.lua: Initialized banner system (%is, '%s'); showing %i banners.\n", 
+				"^2%s.lua: Initialized banner system (%is, '%s'); showing %i banners.\n",
 					modname, g_bannerTime / 1000, g_bannerLocation, bannerSystem:count()))
 	else
 		et.G_Print(string.format("^3%s.lua: Warning! No banners were set.\n", modname))

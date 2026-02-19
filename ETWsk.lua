@@ -78,7 +78,7 @@ function putspec(id)
 end
 putspec_str = "ref remove %d\n"
 
-heavyweapons = {1, 2, 3, 15, 17, 23, 26, 44, 52, 62, 63, 64}            -- heavy weapon indexes 
+heavyweapons = {1, 2, 3, 15, 17, 23, 26, 44, 52, 62, 63, 64}            -- heavy weapon indexes
 
 maxcheckpointdist = 800          -- used to detect capturable flag poles
 --------------------------------------------------------------------------------
@@ -204,7 +204,7 @@ function getConfig(map)
     elseif map == "bulge_beta1" then
         c.spawns[1] = {name = "Hotel", state = PROTECT_ALLIES, pos = {4060, -620, 330}, radius2 = 600}
         c.spawns[2] = {name = "Allied Town Spawn", state = PROTECT_ALLIES, pos = {-4210, -800, 105}, radius2 = 600}
-        c.spawns[3] = {name = "Axis Headquarters", state = PROTECT_AXIS, pos = {4120, -4360, 400}, radius2 = 900}        
+        c.spawns[3] = {name = "Axis Headquarters", state = PROTECT_AXIS, pos = {4120, -4360, 400}, radius2 = 900}
         c.actions[1] = {spawn = 1, newstate = PROTECT_AXIS, trigger = "The Tank is at the Hotel"}
         c.actions[2] = {spawn = 1, newstate = NO_PROTECT, trigger = "The tank is near the 1st tank barrier"}
 -- mp_rocket_et_a1 09.04.2010
@@ -219,12 +219,12 @@ function getConfig(map)
         c.spawns[1] = {name = "TOWN", state = NO_PROTECT}
         c.spawns[2] = {name = "Axis Spawn", state = PROTECT_AXIS, pos = {-1690, -2200, 310}, radius2 = 600}
         c.spawns[3] = {name = "Allies Spawn", state = PROTECT_ALLIES, pos = {-2120, 6130, 570}, radius2 = 523}
-        c.actions[1] = {spawn = 1, newstate = PROTECT_AXIS, trigger = "The Axis are moving the Tank!"} 
+        c.actions[1] = {spawn = 1, newstate = PROTECT_AXIS, trigger = "The Axis are moving the Tank!"}
 -- snatch3 29.04.2010
     elseif map == "snatch3" then
         c.spawns[1] = {name = "Forest House", state = NO_PROTECT, pos = {-860, -1950, 190}, radius2 = 600}
         c.spawns[2] = {name = "Base Spawn", state = PROTECT_AXIS, pos = {40, 2200, 600}, radius2 = 400}
-        c.spawns[3] = {name = "Allied House", state = PROTECT_ALLIES, pos = {2400, 2220, 215}, radius2 = 600}        
+        c.spawns[3] = {name = "Allied House", state = PROTECT_ALLIES, pos = {2400, 2220, 215}, radius2 = 600}
 -- Railgun
     elseif map == "railgun" then
         c.spawns[1] = {name = "Axis Tower Spawn", state = NO_PROTECT}
@@ -412,7 +412,7 @@ function getConfig(map)
         c.spawns[4] = {state = NO_PROTECT} -- Upper Complex (Command Post)
         c.spawns[5] = {state = NO_PROTECT} --Axis Spawn (Documents)
         c.actions[1] = {spawn = 3, newstate = NO_PROTECT, trigger = "Allies have transmitted the Supply Documents"}
-        
+
 -- ETL Frostbite
     elseif map == "etl_frostbite" then
         c.spawns[1] = {name = "Allied Barracks", state = PROTECT_ALLIES, pos = {-4698, -233, -201}, radius2 = 550}
@@ -421,14 +421,14 @@ function getConfig(map)
         c.spawns[4] = {state = NO_PROTECT} -- Upper Complex (Command Post)
         c.spawns[5] = {state = NO_PROTECT} --Axis Spawn (Documents)
         c.actions[1] = {spawn = 3, newstate = NO_PROTECT, trigger = "Allies have transmitted the Supply Documents"}
-        
+
 -- ETL Bergen V3 23.10.2018
     elseif map == "etl_bergen_v3" then
         c.spawns[1] = {state = NO_PROTECT} -- Forward Bunker (Flag)
         c.spawns[2] = {name = "Axis Spawn", state = PROTECT_AXIS, pos = {6687, -1149, 216}, radius2 = 270}
         c.spawns[3] = {name = "Allied Spawn", state = PROTECT_ALLIES, pos = {-1231, -2358, 89}, radius2 = 220}
         c.spawns[4] = {name = "Axis Spawn 2", state = PROTECT_AXIS, pos = {6783, -684, 216}, radius2 = 236}
-        
+
 -- Northpole 2018-12-11
     elseif map == "northpole" then
         c.spawns[1] = {name = "Axis Spawn", state = PROTECT_AXIS, pos = {-3216, -2753, 827}, radius2 = 900}
@@ -437,7 +437,7 @@ function getConfig(map)
         c.spawns[4] = {name = "Town Spawn", state = PROTECT_ALLIES, pos = {2357, -473, 824}, radius2 = 200}
         c.spawns[5] = {name = "Town Spawn outside", state = PROTECT_ALLIES, pos = {2697, -431, 827}, radius2 = 150}
         c.spawns[6] = {name = "Town Spawn 2nd floor", state = PROTECT_ALLIES, pos = {2296, -653, 1016}, radius2 = 225}
-        
+
 -- Bremen B2 16.11.2008
     elseif map == "bremen_b2" or map == "bremen_b3" or map == "fa_bremen_b3" or map == "fa_bremen_final" then
         c.spawns[1] = {name = "Allied first spawn", state = PROTECT_ALLIES, pos = {-1957, -2222, 88}, radius2 = 440}
@@ -500,8 +500,8 @@ function getConfig(map)
         c.spawns[6] = {name = "Axis Depot Spawn Back Exit", state = PROTECT_AXIS, pos = {771, -2629, -47}, radius2 = 220}
         c.spawns[7] = {name = "Axis Depot Spawn Tunnel", state = PROTECT_AXIS, pos = {890, -2270, -147}, radius2 = 260}
         c.actions[1] = {spawn = 3, newstate = PROTECT_ALLIES, trigger = "breached the Forward Bunker"}
-        
-                
+
+
 -- missile_b3
     elseif map == "missile_b3" then
 		        c.spawns[1] = {name = "Gate Control Spawn", state = PROTECT_AXIS, pos = {3750, -4823, 80}, radius2 = 400}
@@ -518,7 +518,7 @@ function getConfig(map)
 				c.actions[1] = {spawn = 1, newstate = NO_PROTECT, trigger = "Magnetic seal deactivated"}
 				--c.actions[2] = {spawn = 6, newstate = PROTECT_ALLIES, trigger = "Allies have activated the Gate Controls"}
 
-				
+
     elseif map == "transmitter" then
 		        c.spawns[3] = {name = "Allied Base", state = PROTECT_ALLIES, radius2 = 1000}
 		        c.spawns[2] = {name = "Castle", state = PROTECT_AXIS, radius2 = 400}
@@ -636,7 +636,7 @@ function getConfig(map)
     elseif map == "italyfp2" then
         c.spawns[3] = {name = "Axis Spawn", pos = {1018, 3096, 98}, state = PROTECT_AXIS, radius2 = 350} --axis
         c.spawns[6] = {name = "Allied CP Spawn", pos = {-1050, -2125, -290}, state = PROTECT_ALLIES, radius2 = 440}
-        
+
 -- v2base_te 17.06.2019
     elseif map == "v2base_te" then
         c.spawns[1] = {name = "Axis Spawn", pos = {-2467, 1427, -215}, state = PROTECT_AXIS, radius2 = 295} --axis
@@ -679,8 +679,8 @@ function getConfig(map)
 
 -- goldendunk_a2
     elseif map == "goldendunk_a2" then
-        c.spawns[1] = {name = "Axis Spawn1", pos = {-2370, 750, 60}, state = PROTECT_AXIS, radius2 = 250} 
-	 c.spawns[2] = {name = "Axis Spawn2", pos = {-2370, -750, 60}, state = PROTECT_AXIS, radius2 = 250} 
+        c.spawns[1] = {name = "Axis Spawn1", pos = {-2370, 750, 60}, state = PROTECT_AXIS, radius2 = 250}
+	 c.spawns[2] = {name = "Axis Spawn2", pos = {-2370, -750, 60}, state = PROTECT_AXIS, radius2 = 250}
         c.spawns[3] = {name = "Allied Spawn1", pos = {2370, 750, 60}, state = PROTECT_ALLIES, radius2 = 250}
 	 c.spawns[4] = {name = "Allied Spawn2", pos = {2370, -750, 60}, state = PROTECT_ALLIES, radius2 = 250}
 
@@ -870,7 +870,7 @@ function printSpawns(cno)
         et.trap_SendServerCommand(cno,"chat \"^3ATTENTION:^7 Mapname: ^3"..mapname.."\n\"")
     end
     for i,spawn in pairs(c.spawns) do
-        if cno == -1 then et.G_Print(string.format("ETWsk> Spawn %d \"%s\" %s \n", i, spawn.name, protect[spawn.state])) 
+        if cno == -1 then et.G_Print(string.format("ETWsk> Spawn %d \"%s\" %s \n", i, spawn.name, protect[spawn.state]))
         else et.trap_SendServerCommand(cno, "chat \"^3ATTENTION:^7 Spawn ^3"..i.."^7 "..spawn.name.." "..protect[spawn.state].."\n\"")
         end
     end

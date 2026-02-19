@@ -24,7 +24,7 @@ local version = "0.3"
 -- local constants
 
 local CH_REVIVE_DIST = 64 -- todo: import as et constant?
-local SKILL_POINTS_ADD = 2 -- skill points healer earns 
+local SKILL_POINTS_ADD = 2 -- skill points healer earns
 
 -- vector math
 
@@ -46,10 +46,10 @@ function toAngleVectors(angles)
 	local sr = math.sin(angle)
 	local cr = math.cos(angle)
 
-	local forward = { 
-		cp * cy, 
-		cp * sy, 
-		-sp 
+	local forward = {
+		cp * cy,
+		cp * sy,
+		-sp
 	}
 	local right = {
 		(-1 * sr * sp * cy + -1 * cr * -sy),
@@ -95,7 +95,7 @@ function revokeSyringe(clientNum)
 	local weapon, ammo, ammoclip = et.GetCurrentWeapon(clientNum)
 	et.AddWeaponToPlayer(clientNum, weapon, ammo, ammoclip + 1, 0)
 end
- 
+
 function checkMedicSyringeHeal(healer)
 	local angles = et.gentity_get(healer, "ps.viewangles")
 	local viewHeight = et.gentity_get(healer, "ps.viewheight")
@@ -138,7 +138,7 @@ function checkMedicSyringeHeal(healer)
 	local finalHealth = healeeMaxHealth * (healerMedSkill >= 3 and 1 or 0.5)
 	et.gentity_set(healee, "health", finalHealth)
 	et.G_Sound(healee, 8) -- GAMESOUND_MISC_REVIVE, todo: import?
-	et.gentity_set(healee, "pers.lasthealth_client", healer) 
+	et.gentity_set(healee, "pers.lasthealth_client", healer)
 	et.G_AddSkillPoints(healer, et.SK_FIRST_AID, SKILL_POINTS_ADD)
 	return 1
 end
