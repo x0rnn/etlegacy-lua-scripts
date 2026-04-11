@@ -1003,7 +1003,7 @@ function et_RunFrame(levelTime)
 	if math.fmod(levelTime, 100) ~= 0 then return end
 	local cs = tonumber(et.trap_GetConfigstring(et.CS_SERVERTOGGLES))
 	if paused == false then
-		if (1 << 4 & cs) == 1 then
+		if ((1 << 4) & cs) == 1 then
 			paused = true
 			changedred = true
 			redflag = false
@@ -1011,7 +1011,7 @@ function et_RunFrame(levelTime)
 			blueflag = false
 		end
 	elseif paused == true then
-		if (1 << 4 & cs) == 0 then
+		if ((1 << 4) & cs) == 0 then
 			paused = false
 		end
 	end
